@@ -126,6 +126,7 @@ body {
 .card:hover{
     background-color:  rgb(105, 103, 103);
     cursor: pointer;
+    --a:1
 }
 .cardContainer {
     margin: 13px;
@@ -158,7 +159,8 @@ body {
     bottom: 88px;
     right: 17px;
     opacity: var(--a);
-    transition: all 1s ease-out;
+    /* transition: all 1s ease-out; */
+    transition: all in --a;
 }
 
 .buttons>* {
@@ -432,5 +434,28 @@ body {
 @media (max-width: 500px) {
     .card {
         width: 100%;
+    }
+    .header>* {
+        padding: 2px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }
+
+    .header{
+        padding: 7px;
+    }
+
+    .spotifyPlaylists h1 {
+        padding: 4px;
+    }
+
+    .library{
+        height: 85vh;
+    }
+
+    .left{ 
+        width: 100vw;
     }
 }
