@@ -20,7 +20,7 @@ async function getsongs(folder) {
     currfolder = folder;
     let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
     let response = await a.text();
-    // console.log(response)
+    console.log(response)
     let div = document.createElement("div")
     div.innerHTML = response;
     let as = div.getElementsByTagName("a")
@@ -75,7 +75,7 @@ const playmusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function displayalbum() {
-    let a = await fetch(`http://127.0.0.1:5500/song/`);
+    let a = await fetch(`http://127.0.0.1:5500/songs/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div")
@@ -90,11 +90,11 @@ async function displayalbum() {
 
 
         // console.log(e.href)
-        if (e.href.includes("/song/")) {
+        if (e.href.includes("/songs/")) {
             let folder = e.href.split("/").slice(-1)[0];
             // console.log(folder)
             // get the meta data of the folder
-            let a = await fetch(`http://127.0.0.1:5500/song/${folder}/info.json`);
+            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
             let response = await a.json();
             // console.log(response)
             cardContainer.innerHTML = cardContainer.innerHTML + `  <div data-folder="${folder}"="" class="card">
@@ -105,7 +105,7 @@ async function displayalbum() {
                                 d="m380-300 280-180-280-180v360ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
                         </svg>
                     </div>
-                    <img src="/song/${folder}/cover.jpg" alt="">
+                    <img src="/songs/${folder}/cover.jpg" alt="">
                     <h2>${response.title}</h2>
                     <p>${response.description}</p>
                 </div>`
@@ -128,7 +128,7 @@ async function displayalbum() {
 async function main() {
 
     // get the list of all the songs
-    await getsongs("song/ncs")
+    await getsongs("songs/ncs")
     playmusic(songs[0], true)
     // console.log(songs);
 
