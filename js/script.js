@@ -10,7 +10,7 @@ function secondsToMinutesSeconds(seconds) {
     const formattedMinutes = String(minutes).padStart(2, '0');
     const formattedSeconds = String(remainingSeconds).padStart(2, '0');
 
-    return ${formattedMinutes}:${formattedSeconds};
+    return `${formattedMinutes}:${formattedSeconds}`;
 }
 let currentsong = new Audio();
 let songs;
@@ -18,7 +18,7 @@ let currfolder;
 
 async function getsongs(folder) {
     currfolder = folder;
-    let a = await fetch(http://127.0.0.1:5500/${folder}/);
+    let a = await fetch(`http://127.0.0.1:5500/${folder}/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div")
@@ -65,7 +65,7 @@ async function getsongs(folder) {
 }
 const playmusic = (track, pause = false) => {
     // let audio = new Audio("/song/" + track) 
-    currentsong.src = /${currfolder}/ + track
+    currentsong.src = `/${currfolder}/` + track
     if (!pause) {
         currentsong.play()
         play.src = "img/pause.svg"
@@ -75,7 +75,7 @@ const playmusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function displayalbum() {
-    let a = await fetch(http://127.0.0.1:5500/song/);
+    let a = await fetch(`http://127.0.0.1:5500/song/`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div")
@@ -94,7 +94,7 @@ async function displayalbum() {
             let folder = e.href.split("/").slice(-1)[0];
             // console.log(folder)
             // get the meta data of the folder
-            let a = await fetch(http://127.0.0.1:5500/song/${folder}/info.json);
+            let a = await fetch(`http://127.0.0.1:5500/song/${folder}/info.json`);
             let response = await a.json();
             // console.log(response)
             cardContainer.innerHTML = cardContainer.innerHTML + `  <div data-folder="${folder}"="" class="card">
@@ -117,7 +117,7 @@ async function displayalbum() {
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
             // console.log("Fetching Songs")
-            songs = await getsongs(song/${item.currentTarget.dataset.folder});
+            songs = await getsongs(`song/${item.currentTarget.dataset.folder}`);
 
            playmusic(songs[0]);
         })
@@ -152,7 +152,7 @@ async function main() {
     // listen for time update event
     currentsong.addEventListener("timeupdate", () => {
         console.log(currentsong.currentTime, currentsong.duration);
-        document.querySelector(".songtime").innerHTML = ${secondsToMinutesSeconds(currentsong.currentTime)}/${secondsToMinutesSeconds(currentsong.duration)}
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentsong.currentTime)}/${secondsToMinutesSeconds(currentsong.duration)}`
         document.querySelector(".circle").style.left = (currentsong.currentTime / currentsong.duration) * 100 + "%"
     })
     //    add event listener to seek bar
