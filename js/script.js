@@ -29,7 +29,7 @@ async function getsongs(folder) {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(/${folder}/)[1]);
+            songs.push(element.href.split(`/${folder}/`)[1]);
         }
 
     }
@@ -211,7 +211,7 @@ async function main() {
             document.querySelector(".range").getElementsByTagName("input")[0].value = 10;
         }
 
-    })
+    })
 
 
 
