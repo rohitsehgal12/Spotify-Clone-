@@ -131,7 +131,7 @@ async function displayalbum() {
 async function main() {
 
     // get the list of all the songs
-    await getsongs("songs/ncs")
+    await getsongs("/public/songs/ncs/")
     playmusic(songs[0], true)
     // console.log(songs);
 
