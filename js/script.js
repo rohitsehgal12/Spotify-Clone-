@@ -16,15 +16,12 @@ let currentsong = new Audio();
 let songs;
 let currfolder;
 
-let k = await fetch(`/songs/ncs/track1.mp3`);
-let blob = await k.blob();
-let url = URL.createObjectURL(blob);
-console.log(url);
+
 
 
 async function getsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`/songs/${folder}/`);
     let response = await a.text();
     console.log(response)
     let div = document.createElement("div")
