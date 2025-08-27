@@ -21,7 +21,7 @@ let currfolder;
 
 async function getsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`/songs/ncs/list.json`);
     let response = await a.text();
     console.log(response)
     let div = document.createElement("div")
