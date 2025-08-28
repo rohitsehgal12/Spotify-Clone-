@@ -78,7 +78,7 @@ const playmusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
 }
 async function displayalbum() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`public/songs/ncs/list.json`);
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div")
@@ -93,7 +93,7 @@ async function displayalbum() {
 
 
         // console.log(e.href)
-        if (e.href.includes("/songs/")) {
+        if (e.href.includes("public/songs/ncs/list.json")) {
             let folder = e.href.split("/").slice(-1)[0];
             // console.log(folder)
             // get the meta data of the folder
